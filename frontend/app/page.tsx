@@ -4,11 +4,7 @@ import type React from "react";
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import AddressAutocomplete, {
-	type AddressData,
-} from "@/components/address-autocomplete";
-import { isAddressInFiveBoroughs } from "@/lib/nyc-bounds";
+import AddressAutocomplete from "@/components/address-autocomplete";
 import SmartSimpleBrilliant from "../components/smart-simple-brilliant";
 import YourWorkInSync from "../components/your-work-in-sync";
 import EffortlessIntegration from "../components/effortless-integration-updated";
@@ -38,19 +34,11 @@ export default function LandingPage() {
 	const router = useRouter();
 	const [activeCard, setActiveCard] = useState(0);
 	const [progress, setProgress] = useState(0);
-	const [addressError, setAddressError] = useState<string | null>(null);
 	const mountedRef = useRef(true);
 	const activeCardRef = useRef(0);
 
-	const handleAddressSelect = (addressData: AddressData) => {
-		// Defer validation so dropdown can close and input can update first (better mobile tap reliability)
-		setTimeout(() => {
-			setAddressError(null);
-			if (!isAddressInFiveBoroughs(addressData)) {
-				toast.error("Address must be within the 5 NYC boroughs");
-				setAddressError("Address must be within the 5 NYC boroughs");
-			}
-		}, 0);
+	const handleAddressSelect = () => {
+		// No validation; address is passed through to next step when user continues.
 	};
 
 	// Keep ref in sync with state
@@ -136,29 +124,34 @@ export default function LandingPage() {
 							<div className="w-full max-w-[calc(100%-32px)] sm:max-w-[calc(100%-48px)] md:max-w-[calc(100%-64px)] lg:max-w-[700px] lg:w-[700px] h-10 sm:h-11 md:h-12 py-1.5 sm:py-2 px-3 sm:px-4 md:px-4 pr-2 sm:pr-3 bg-[#F7F5F3] backdrop-blur-sm shadow-[0px_0px_0px_2px_white] overflow-hidden rounded-[50px] flex justify-between items-center relative z-30">
 								<div className="flex justify-center items-center">
 									<div className="flex justify-start items-center">
-										<img
-											src="/logos/Clermontlogo-text-removebg.png"
-											alt="Company Name"
-											className="h-5 sm:h-6 md:h-7 lg:h-8 w-auto"
-										/>
+										{/* Logo placeholder – replace with your logo image */}
+										<div
+											className="h-5 sm:h-6 md:h-7 lg:h-8 w-20 sm:w-24 md:w-28 lg:w-32 bg-[rgba(55,50,47,0.08)] rounded border border-[rgba(55,50,47,0.12)] flex items-center justify-center"
+											aria-hidden
+										>
+											<span className="text-[10px] text-[#6b7280] text-center leading-tight px-1">20×32 – 32×32</span>
+										</div>
 									</div>
-									{/* <div className="pl-3 sm:pl-4 md:pl-5 lg:pl-5 flex justify-start items-start hidden sm:flex flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-4">
-										<div className="flex justify-start items-center">
-											<div className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans">
-												Demo
-											</div>
-										</div>
-										<div className="flex justify-start items-center">
-											<div className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans">
-												Solutions
-											</div>
-										</div>
-										<div className="flex justify-start items-center">
-											<div className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans">
-												Pricing
-											</div>
-										</div>
-									</div> */}
+									<div className="pl-3 sm:pl-4 md:pl-5 lg:pl-5 flex justify-start items-start hidden sm:flex flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-4">
+										<button
+											type="button"
+											className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors"
+										>
+											Demo
+										</button>
+										<button
+											type="button"
+											className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors"
+										>
+											Solutions
+										</button>
+										<a
+											href="#pricing"
+											className="flex flex-col justify-center text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors"
+										>
+											Pricing
+										</a>
+									</div>
 								</div>
 								<div className="h-6 sm:h-7 md:h-8 flex justify-start items-start gap-2 sm:gap-3">
 									<button
@@ -211,14 +204,9 @@ export default function LandingPage() {
 											onAddressSelect={
 												handleAddressSelect
 											}
-											placeholder="Search Address"
+											placeholder="Boiler Plate Placeholder"
 											className="w-full h-10 sm:h-11 md:h-12 px-4 sm:px-6 text-sm sm:text-base border border-[rgba(55,50,47,0.12)] rounded-md bg-white focus-visible:ring-2 focus-visible:ring-[#D09376] focus-visible:border-[#D09376]"
 										/>
-										{addressError && (
-											<p className="text-sm text-amber-700 px-2">
-												{addressError}
-											</p>
-										)}
 									</div>
 									<button
 										onClick={() =>
