@@ -186,7 +186,7 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
 											color: "#92400E",
 										}}
 									>
-										Review Parcel Zoning
+										Meeting 1
 									</div>
 								</div>
 							</div>
@@ -276,7 +276,7 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
 											color: "#0C4A6E",
 										}}
 									>
-										Concept Design Review II
+										Meeting 2
 									</div>
 								</div>
 							</div>
@@ -338,7 +338,7 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
 											color: "#064E3B",
 										}}
 									>
-										Concept Design Review III
+										Meeting 3
 									</div>
 								</div>
 							</div>
@@ -455,7 +455,7 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
 											color: "#581C87",
 										}}
 									>
-										782 9th Ave Client Intro
+										Intro meeting
 									</div>
 								</div>
 							</div>
@@ -545,7 +545,7 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
 											color: "#BE123C",
 										}}
 									>
-										Sign Contract
+										Sign document
 									</div>
 								</div>
 							</div>
@@ -607,7 +607,7 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
 											color: "#581C87",
 										}}
 									>
-										2301 W 4th Ave Client Intro
+										Follow-up meeting
 									</div>
 								</div>
 							</div>

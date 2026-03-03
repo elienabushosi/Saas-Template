@@ -23,20 +23,18 @@ export default function DocumentationSection() {
 
 	const cards = [
 		{
-			title: "Address Research",
-			description: "Enter an address, get a report in minutes.",
+			title: "Value Proposition 1",
+			description: "VP Description 1. Replace with your benefit copy.",
 			image: "/addressresearchlower2.png",
 		},
 		{
-			title: "Parcel Zoning Analysis",
-			description:
-				"Analyze zoning, land-use, and building lot information to determine if a parcel is suitable for a project.",
+			title: "Value Proposition 2",
+			description: "VP Description 2. Replace with your benefit copy.",
 			image: "/feasabilityreportimage2.png",
 		},
 		{
-			title: "Reliable and Accurate",
-			description:
-				"Our reports are based on the latest zoning and land-use codes, and are updated regularly.",
+			title: "Value Proposition 3",
+			description: "VP Description 3. Replace with your benefit copy.",
 			image: "/Reliableandaccuratelower.png",
 		},
 	];
@@ -67,12 +65,10 @@ export default function DocumentationSection() {
 						text="Platform Features"
 					/>
 					<div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-						Streamline your parcel zoning research
+						Platform features headline
 					</div>
 					<div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-						Manage intakes, analyze parcels, close deals faster
-						<br />
-						with Clermont.
+						VP Description 1. Replace with your value proposition copy.
 					</div>
 				</div>
 			</div>

@@ -146,8 +146,7 @@ const YourWorkInSync: React.FC<YourWorkInSyncProps> = ({
 									whiteSpace: "nowrap",
 								}}
 							>
-								Is it possible to develop a residential building
-								here?
+								Generic question placeholder
 							</span>
 						</div>
 					</div>
@@ -190,7 +189,7 @@ const YourWorkInSync: React.FC<YourWorkInSyncProps> = ({
 									whiteSpace: "nowrap",
 								}}
 							>
-								Yes! I checked!
+								Generic answer placeholder
 							</span>
 						</div>
 						{/* Avatar */}
@@ -263,7 +262,7 @@ const YourWorkInSync: React.FC<YourWorkInSyncProps> = ({
 									whiteSpace: "nowrap",
 								}}
 							>
-								When can we sign?
+								Next step placeholder
 							</span>
 						</div>
 					</div>
@@ -305,7 +304,7 @@ const YourWorkInSync: React.FC<YourWorkInSyncProps> = ({
 									whiteSpace: "nowrap",
 								}}
 							>
-								Here's a contract!
+								Shared document placeholder
 							</span>
 						</div>
 						{/* Send button */}

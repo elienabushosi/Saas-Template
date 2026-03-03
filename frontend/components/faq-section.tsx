@@ -9,25 +9,24 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
 	{
-		question: "How do I get started with Clermont?",
-		answer: "Getting started is simple. Create an account and log in, then you can search for different property addresses and generate zoning reports instantly. You can also connect Clermont to your client intake flow, letting you organize multiple projects or clients. For each address you enter, Clermont will generate a zoning snapshot you can reference during your client conversations.",
+		question: "FAQ Question 1",
+		answer: "FAQ Answer 1. Short placeholder description. Replace with your content.",
 	},
 	{
-		question: "What is Clermont and who is it for?",
-		answer: "Clermont is a zoning pre-check and feasibility tool built for developers and architects. It helps teams quickly understand what may be possible on a property by generating a clear zoning and land-use summary from an address. Clermont is designed for early-stage evaluation by providing clarity on key constraints like FAR, base height, max building height, lot coverage, and setbacks before design work begins. It gives architects and developers a fast, structured read so they can make informed decisions earlier in the process.",
+		question: "FAQ Question 2",
+		answer: "FAQ Answer 2. Short placeholder description. Replace with your content.",
 	},
 	{
-		question: "How does Clermont work?",
-		answer: "Clermont starts with a property address. Using that address, it pulls parcel-level data such as zoning classification, constraints, land use, and lot characteristics, then interprets what is allowed or restricted on the site as it relates to zoning. The result is a clear, architect-friendly zoning summary that can be reviewed.",
+		question: "FAQ Question 3",
+		answer: "FAQ Answer 3. Short placeholder description. Replace with your content.",
 	},
 	{
-		question: "Is Clermont a replacement for full zoning or legal review?",
-		answer: "No. Clermont is intended for early-stage feasibility and decision-making. It provides clarity and direction, but it does not replace detailed zoning analysis, legal review, or consultation with local authorities during permitting.",
+		question: "FAQ Question 4",
+		answer: "FAQ Answer 4. Short placeholder description. Replace with your content.",
 	},
 	{
-		question:
-			"How is Clermont different from using ChatGPT or public zoning sites?",
-		answer: "Clermont centralizes parcel data and zoning interpretation into a single, repeatable workflow. Instead of manually pulling data from multiple tools and interpreting it each time, Clermont provides a structured feasibility summary tied directly to a specific property and client.",
+		question: "FAQ Question 5",
+		answer: "FAQ Answer 5. Short placeholder description. Replace with your content.",
 	},
 ];
 
@@ -72,8 +71,7 @@ export default function FAQSection() {
 						Frequently Asked Questions
 					</div>
 					<div className="w-full text-[#605A57] text-base font-normal leading-7 font-sans">
-						Explore what's possible on a property before you start
-						design work & bring your team together.
+						Common questions and answers. Replace with your FAQ intro.
 					</div>
 				</div>
 

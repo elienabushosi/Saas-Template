@@ -7,11 +7,11 @@ export default function FooterSection() {
 					{/* Brand Section */}
 					<div className="self-stretch flex justify-start items-center gap-3">
 						<div className="text-center text-[#49423D] text-xl font-semibold leading-4 font-sans">
-							Clermont
+							Company Name
 						</div>
 					</div>
 					<div className="text-[rgba(73,66,61,0.90)] text-sm font-medium leading-[18px] font-sans">
-						Zoning and site-intelligence for developers & architects
+						Tagline or short description for your product.
 					</div>
 
 					{/* Social Media Icons */}

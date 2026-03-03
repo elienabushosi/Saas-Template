@@ -138,7 +138,7 @@ export default function LandingPage() {
 									<div className="flex justify-start items-center">
 										<img
 											src="/logos/Clermontlogo-text-removebg.png"
-											alt="Clermont"
+											alt="Company Name"
 											className="h-5 sm:h-6 md:h-7 lg:h-8 w-auto"
 										/>
 									</div>
@@ -186,13 +186,10 @@ export default function LandingPage() {
 							<div className="w-full max-w-[937px] lg:w-[937px] flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
 								<div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
 									<div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[80px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-24 font-serif px-2 sm:px-4 md:px-0">
-										Get residential zoning reports
-										<br />
-										with Clermont
+										Accomplish anything with Company Name
 									</div>
 									<div className="w-full max-w-[506.08px] lg:w-[506.08px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.80)] sm:text-lg md:text-xl leading-[1.4] sm:leading-[1.45] md:leading-[1.5] lg:leading-7 font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm">
-										Streamline your parcel zoning research
-										with seamless automation
+										A short supporting sentence for your product.
 									</div>
 								</div>
 							</div>
@@ -204,7 +201,7 @@ export default function LandingPage() {
 									>
 										<div className="w-20 sm:w-24 md:w-28 lg:w-44 h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.05)] mix-blend-multiply"></div>
 										<div className="flex flex-col justify-center text-white text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
-											Start for free
+											Try For Free
 										</div>
 									</button>
 								</div>
@@ -225,13 +222,13 @@ export default function LandingPage() {
 									</div>
 									<button
 										onClick={() =>
-											router.push("/report-options")
+											router.push("/information-gather")
 										}
 										className="w-full sm:w-auto sm:flex-shrink-0 h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-[#D09376] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-md flex justify-center items-center hover:bg-[#D09376]/90 transition-colors cursor-pointer"
 									>
 										<div className="w-20 sm:w-24 md:w-28 lg:w-44 h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.05)] mix-blend-multiply"></div>
 										<div className="flex flex-col justify-center text-white text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
-											Generate Report for Free
+											Try For Free
 										</div>
 									</button>
 								</div>
@@ -253,7 +250,7 @@ export default function LandingPage() {
 										{/* Main Content */}
 										<div className="w-full h-full flex items-center justify-center">
 											<div className="relative w-full h-full overflow-hidden">
-												{/* Product Image 1 - Address Research */}
+												{/* Product Image 1 */}
 												<div
 													className={`absolute inset-0 transition-all duration-500 ease-in-out ${
 														activeCard === 0
@@ -263,12 +260,12 @@ export default function LandingPage() {
 												>
 													<img
 														src="/Addressresearchtop.png"
-														alt="Address Research - Property Report View"
+														alt="Product screenshot 1"
 														className="w-full h-full object-cover scale-[1.01]"
 													/>
 												</div>
 
-												{/* Product Image 2 - Data to insights */}
+												{/* Product Image 2 */}
 												<div
 													className={`absolute inset-0 transition-all duration-500 ease-in-out ${
 														activeCard === 1
@@ -278,12 +275,12 @@ export default function LandingPage() {
 												>
 													<img
 														src="/Datainsightstop.png"
-														alt="Data & Insights - Sample Report View with Allowed and Restricted Uses"
+														alt="Product screenshot 2"
 														className="w-full h-full object-cover"
 													/>
 												</div>
 
-												{/* Product Image 3 - Automated Reports */}
+												{/* Product Image 3 */}
 												<div
 													className={`absolute inset-0 transition-all duration-500 ease-in-out ${
 														activeCard === 2
@@ -293,7 +290,7 @@ export default function LandingPage() {
 												>
 													<img
 														src="/Automatedreports.png"
-														alt="Automated Reports - Reports Dashboard View"
+														alt="Product screenshot 3"
 														className="w-full h-full object-cover"
 													/>
 												</div>
@@ -320,8 +317,8 @@ export default function LandingPage() {
 								<div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
 									{/* Feature Cards */}
 									<FeatureCard
-										title="Address Research"
-										description="Research zoning constraints for addresses & properties."
+										title="Value Proposition 1"
+										description="VP Description 1. Replace with your benefit copy."
 										isActive={activeCard === 0}
 										progress={
 											activeCard === 0 ? progress : 0
@@ -329,8 +326,8 @@ export default function LandingPage() {
 										onClick={() => handleCardClick(0)}
 									/>
 									<FeatureCard
-										title="Data & insights"
-										description="Discover relevant data on the property before a project starts"
+										title="Value Proposition 2"
+										description="VP Description 2. Replace with your benefit copy."
 										isActive={activeCard === 1}
 										progress={
 											activeCard === 1 ? progress : 0
@@ -338,8 +335,8 @@ export default function LandingPage() {
 										onClick={() => handleCardClick(1)}
 									/>
 									<FeatureCard
-										title="Automated Reports"
-										description="Generate reports for clients to be better prepared for intro discussions"
+										title="Value Proposition 3"
+										description="VP Description 3. Replace with your benefit copy."
 										isActive={activeCard === 2}
 										progress={
 											activeCard === 2 ? progress : 0
@@ -385,12 +382,10 @@ export default function LandingPage() {
 										<div className="border-b border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-start items-start gap-4 sm:gap-6">
 											<div className="flex flex-col gap-2">
 												<h3 className="text-[#685954] text-lg sm:text-xl font-semibold leading-tight font-sans">
-													Fast. Simple. Accurate.
+													Value Proposition 1
 												</h3>
 												<p className="text-[#605A57] text-sm md:text-base font-normal leading-relaxed font-sans">
-													Get parcel zoning reports
-													with Clermont in minutes,
-													not hours.
+													VP Description 1. Replace with your value proposition.
 												</p>
 											</div>
 											<div className="w-full h-[200px] sm:h-[250px] md:h-[300px] rounded-lg flex items-center justify-center overflow-hidden">
@@ -407,12 +402,10 @@ export default function LandingPage() {
 										<div className="border-b border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-start items-start gap-4 sm:gap-6">
 											<div className="flex flex-col gap-2">
 												<h3 className="text-[#685954] font-semibold leading-tight font-sans text-lg sm:text-xl">
-													From intro to contract,
-													faster!
+													Value Proposition 2
 												</h3>
 												<p className="text-[#605A57] text-sm md:text-base font-normal leading-relaxed font-sans">
-													Every report helps you close
-													deals faster.
+													VP Description 2. Replace with your benefit copy.
 												</p>
 											</div>
 											<div className="w-full h-[200px] sm:h-[250px] md:h-[300px] rounded-lg flex overflow-hidden text-right items-center justify-center">

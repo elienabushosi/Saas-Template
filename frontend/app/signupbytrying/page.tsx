@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,55 +15,102 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 
 const schema = z
 	.object({
+		firstName: z.string().min(1, "First name is required"),
 		email: z.string().email("Enter a valid email"),
 		password: z.string().min(6, "Password must be at least 6 characters"),
-		confirmPassword: z.string(),
+		organizationType: z.enum(["new", "existing"], {
+			required_error: "Please select an option",
+		}),
+		organizationName: z.string().optional(),
+		joinCode: z.string().optional(),
 	})
-	.refine((data) => data.password === data.confirmPassword, {
-		message: "Passwords do not match",
-		path: ["confirmPassword"],
-	});
+	.refine(
+		(data) => {
+			if (data.organizationType === "new") {
+				return data.organizationName && data.organizationName.trim().length > 0;
+			}
+			if (data.organizationType === "existing") {
+				return data.joinCode && data.joinCode.trim().length > 0;
+			}
+			return true;
+		},
+		{ message: "This field is required", path: ["organizationName"] }
+	)
+	.refine(
+		(data) => {
+			if (data.organizationType === "existing") {
+				return data.joinCode && data.joinCode.trim().length > 0;
+			}
+			return true;
+		},
+		{ message: "Join code is required", path: ["joinCode"] }
+	);
 
 type FormValues = z.infer<typeof schema>;
 
-export default function SignupByTryingPage() {
+export default function SignupByTryingPage(): React.JSX.Element {
 	const router = useRouter();
-	const [showPassword, setShowPassword] = useState(false);
-	const [showConfirm, setShowConfirm] = useState(false);
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(schema),
 		defaultValues: {
+			firstName: "",
 			email: "",
 			password: "",
-			confirmPassword: "",
+			organizationType: "new",
+			organizationName: "",
+			joinCode: "",
 		},
 	});
 
+	const organizationType = form.watch("organizationType");
+
 	const onSubmit = (values: FormValues) => {
-		// This is a placeholder; wire to your backend when ready.
-		console.log("Signup by trying:", values);
+		// Placeholder; wire to your backend when ready.
+		console.log("Sign up by trying:", values);
 		router.push("/home");
 	};
 
 	return (
 		<div className="w-full min-h-screen bg-[#F7F5F3] flex items-center justify-center p-4">
 			<div className="w-full max-w-md bg-white rounded-lg shadow-sm border border-[rgba(55,50,47,0.12)] p-8 space-y-6">
-				<h1 className="text-2xl font-semibold text-[#37322F]">
-					Sign up by trying
+				<h1 className="text-lg font-semibold text-[#37322F] text-center">
+					Create an Account to Securely Try It
 				</h1>
-				<p className="text-sm text-[#605A57]">
-					Use this form as a starting point for your own signup or trial flow.
-					Connect it to your auth backend when you&apos;re ready.
-				</p>
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
 						className="space-y-4"
 					>
+						<FormField
+							control={form.control}
+							name="firstName"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel className="text-[#37322F]">
+										First Name
+									</FormLabel>
+									<FormControl>
+										<Input
+											type="text"
+											placeholder="Enter your first name"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 						<FormField
 							control={form.control}
 							name="email"
@@ -76,7 +122,7 @@ export default function SignupByTryingPage() {
 									<FormControl>
 										<Input
 											type="email"
-											placeholder="you@example.com"
+											placeholder="Enter your email"
 											{...field}
 										/>
 									</FormControl>
@@ -92,86 +138,95 @@ export default function SignupByTryingPage() {
 									<FormLabel className="text-[#37322F]">
 										Password
 									</FormLabel>
-									<div className="relative">
-										<FormControl>
-											<Input
-												type={
-													showPassword
-														? "text"
-														: "password"
-												}
-												placeholder="Create a password"
-												{...field}
-											/>
-										</FormControl>
-										<button
-											type="button"
-											onClick={() =>
-												setShowPassword((v) => !v)
-											}
-											className="absolute inset-y-0 right-3 flex items-center text-[#605A57]"
-											aria-label={
-												showPassword
-													? "Hide password"
-													: "Show password"
-											}
-										>
-											{showPassword ? (
-												<EyeOff className="h-4 w-4" />
-											) : (
-												<Eye className="h-4 w-4" />
-											)}
-										</button>
-									</div>
+									<FormControl>
+										<Input
+											type="password"
+											placeholder="Enter your password"
+											{...field}
+										/>
+									</FormControl>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
 						<FormField
 							control={form.control}
-							name="confirmPassword"
+							name="organizationType"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel className="text-[#37322F]">
-										Confirm password
+										Join existing organization or new
 									</FormLabel>
-									<div className="relative">
+									<Select
+										onValueChange={(value) => {
+											field.onChange(value);
+											if (value === "new") {
+												form.setValue("joinCode", "");
+											} else {
+												form.setValue("organizationName", "");
+											}
+										}}
+										defaultValue={field.value}
+									>
 										<FormControl>
-											<Input
-												type={
-													showConfirm
-														? "text"
-														: "password"
-												}
-												placeholder="Re-enter password"
-												{field}
-											/>
+											<SelectTrigger className="w-full">
+												<SelectValue placeholder="Select an option" />
+											</SelectTrigger>
 										</FormControl>
-										<button
-											type="button"
-											onClick={() =>
-												setShowConfirm((v) => !v)
-											}
-											className="absolute inset-y-0 right-3 flex items-center text-[#605A57]"
-											aria-label={
-												showConfirm
-													? "Hide password"
-													: "Show password"
-											}
-										>
-											{showConfirm ? (
-												<EyeOff className="h-4 w-4" />
-											) : (
-												<Eye className="h-4 w-4" />
-											)}
-										</button>
-									</div>
+										<SelectContent>
+											<SelectItem value="new">New</SelectItem>
+											<SelectItem value="existing">Existing</SelectItem>
+										</SelectContent>
+									</Select>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
-						<Button type="submit" className="w-full">
-							Continue
+						{organizationType === "new" && (
+							<FormField
+								control={form.control}
+								name="organizationName"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-[#37322F]">
+											Organization Name
+										</FormLabel>
+										<FormControl>
+											<Input
+												type="text"
+												placeholder="Enter your organization name"
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						)}
+						{organizationType === "existing" && (
+							<FormField
+								control={form.control}
+								name="joinCode"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-[#37322F]">
+											Organization Code
+										</FormLabel>
+										<FormControl>
+											<Input
+												type="text"
+												placeholder="Enter organization code"
+												{...field}
+												className="uppercase"
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						)}
+						<Button type="submit" className="w-full bg-[#37322F] hover:bg-[#37322F]/90 text-white">
+							Create account
 						</Button>
 					</form>
 				</Form>
@@ -179,4 +234,3 @@ export default function SignupByTryingPage() {
 		</div>
 	);
 }
-
