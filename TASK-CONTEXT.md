@@ -14,20 +14,20 @@ This repo is the **SaaS Template** boilerplate. It was created by **copying the 
 ## Where we are in the checklist (Option B)
 
 - [x] **Step 1:** Copy the whole Clermont project to a new folder (this folder: “SaaS Template”).
-- [ ] **Step 2:** In this folder, remove the old git history and re-init:
+- [x] **Step 2:** In this folder, remove the old git history and re-init:
   ```bash
   rm -rf .git
   git init
   git add .
   git commit -m "Initial boilerplate from Clermont"
   ```
-- [ ] **Step 3:** Connect to the new GitHub repo and push:
+- [x] **Step 3:** Connect to the new GitHub repo and push:
   ```bash
   git remote add origin https://github.com/elienabushosi/Saas-Template.git
   git branch -M main
   git push -u origin main
   ```
-- [ ] **Step 4:** Finish the rest of **CHECKLIST-SAAS-BOILERPLATE.md** in this repo:
+- [x] **Step 4:** Finish the rest of **CHECKLIST-SAAS-BOILERPLATE.md** in this repo:
   - **Section 1:** Repo & local setup (verify `npm install`, `npm run install:all`, `npm run dev`).
   - **Section 2:** Supabase disconnected (env placeholders; optionally make `backend/lib/supabase.js` start without real keys).
   - **Section 3:** Stripe disconnected (env placeholders in backend + frontend).

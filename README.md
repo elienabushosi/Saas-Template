@@ -1,81 +1,75 @@
-# Lindero Monorepo
+# SaaS Template
 
-A client-intake and asset-analysis tool for developers & architects that automatically generates property feasibility snapshots using just a client's address.
+A **clone-and-go SaaS boilerplate**. This repo is a disconnected starter: you can clone it and run it locally without any third-party accounts. Connect **Supabase**, **Stripe**, **Resend**, and **Railway** when you’re ready.
 
-## Project Structure
+## Project structure
 
 ```
-Lindero/
-├── frontend/          # Next.js 14 frontend application
-├── backend/           # Express.js backend API
-└── package.json       # Root monorepo configuration
+├── frontend/     # Next.js frontend
+├── backend/      # Express.js API
+├── package.json  # Root monorepo (npm workspaces)
 ```
+
+## Prerequisites
+
+- Node.js (v18+ or compatible)
+- npm
 
 ## Setup
 
-### Prerequisites
+1. **Clone the repo**
 
--   Node.js (v21.4.0 or compatible)
--   npm
+   ```bash
+   git clone https://github.com/elienabushosi/Saas-Template.git
+   cd Saas-Template
+   ```
 
-### Installation
+2. **Install dependencies**
 
-1. Install root dependencies:
+   ```bash
+   npm install
+   npm run install:all
+   ```
 
-```bash
-npm install
-```
+3. **Environment (required to run)**
 
-2. Install workspace dependencies:
+   - **Backend:** Copy `backend/env.example` to `backend/.env.development`
+   - **Frontend:** Copy `frontend/env.example` to `frontend/.env.development`
 
-```bash
-npm run install:all
-```
-
-Or install individually:
-
-```bash
-cd frontend && npm install
-cd ../backend && npm install
-```
+   Leave the placeholder values as-is to run locally without connecting services. The app will start; auth, billing, and email will only work after you add real keys. See **Connecting services** below.
 
 ## Development
 
-### Run Frontend Only
+- **Frontend only:** `npm run dev` or `npm run dev:frontend`
+- **Backend only:** `npm run dev:backend`
+- **Both:** `npm run dev:all`
 
-```bash
-npm run dev
-# or
-npm run dev:frontend
-```
+- Frontend: **http://localhost:3000**
+- Backend: **http://localhost:3002** (see `backend/env.example`)
 
-### Run Backend Only
+## Connecting services
 
-```bash
-npm run dev:backend
-```
+All of these are **disconnected by default**. Use the env files and this checklist when you’re ready to connect:
 
-### Run Both (Frontend + Backend)
+| Service   | What to do |
+|----------|-------------|
+| **Env files** | `backend/env.example`, `frontend/env.example` – copy to `.env.development` / `.env.production` and replace placeholders |
+| **Checklist** | See **CHECKLIST-SAAS-BOILERPLATE.md** for step-by-step instructions to connect Supabase, Stripe, Resend, and deployment |
 
-```bash
-npm run dev:all
-```
-
-The frontend will run on `http://localhost:3000`  
-The backend will run on `http://localhost:3001`
+- **Supabase:** Create a project, run migrations (e.g. `backend/schema.sql`, `backend/migration-*.sql`), then set `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and optionally `SUPABASE_SERVICE_ROLE_KEY` in `backend/.env.development`.
+- **Stripe:** Use test keys and test price IDs in dev; set live keys and live price IDs in production env.
+- **Resend:** Set `RESEND_API_KEY` (and optionally `RESEND_FROM_EMAIL`, `ADMIN_EMAIL`) when you want to send email.
+- **Railway / deploy:** This repo does **not** include a connected Railway (or other) project. You deploy the backend and frontend yourself and set `NEXT_PUBLIC_API_URL` in the frontend to your deployed backend URL (e.g. `https://your-app.up.railway.app`).
 
 ## Build
-
-Build the frontend for production:
 
 ```bash
 npm run build
 ```
 
+Builds the frontend for production.
+
 ## Workspaces
 
-This project uses npm workspaces:
-
--   `lindero-frontend` - Next.js application
--   `lindero-backend` - Express.js API server
-
+- `frontend` – Next.js app  
+- `backend` – Express API

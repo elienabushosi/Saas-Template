@@ -1,4 +1,4 @@
-# Checklist: Clermont as a Disconnected SaaS Boilerplate
+# Checklist: SaaS Template (Disconnected Boilerplate)
 
 Use this checklist when turning Clermont into a clone-and-go SaaS boilerplate. All third-party services start **disconnected**; you connect them when you’re ready.
 
@@ -46,9 +46,9 @@ The boilerplate is a **copy** of this repo (Clermont). Do one of the following.
 
 ## 1. Repo & local setup (for you or someone using the boilerplate)
 
-- [ ] Clone the boilerplate repo (or copy the project folder).
-- [ ] From repo root, run: `npm install` then `npm run install:all`.
-- [ ] Confirm scripts work:
+- [x] Clone the boilerplate repo (or copy the project folder).
+- [x] From repo root, run: `npm install` then `npm run install:all`.
+- [x] Confirm scripts work:
   - `npm run dev` or `npm run dev:all` — frontend (and optionally backend) run locally.
   - Backend port: **3002** (see `backend/env.example`). Frontend: **3000**.
 
@@ -56,53 +56,53 @@ The boilerplate is a **copy** of this repo (Clermont). Do one of the following.
 
 ## 2. Supabase — disconnected by default
 
-- [ ] **Backend env:** Copy `backend/env.example` to `backend/.env.development` (and later `.env.production` if needed).
-- [ ] Leave Supabase placeholders as-is, or set dummy values so the backend doesn’t require real keys to start:
+- [x] **Backend env:** Copy `backend/env.example` to `backend/.env.development` (and later `.env.production` if needed).
+- [x] Leave Supabase placeholders as-is, or set dummy values so the backend doesn’t require real keys to start:
   - `SUPABASE_URL=https://placeholder.supabase.co`
   - `SUPABASE_ANON_KEY=placeholder`
   - `SUPABASE_SERVICE_ROLE_KEY=placeholder`
-- [ ] **Optional:** Change `backend/lib/supabase.js` so the app can start without Supabase (e.g. skip `createClient` when URL/key are placeholder or missing, and export `null` or a no-op client). Otherwise, keep the current “throw if missing” behavior and document that users must create a Supabase project and paste real keys before using auth/reports.
-- [ ] **When connecting:** Create a Supabase project, run the project’s SQL migrations (e.g. `backend/schema.sql`, `migration-*.sql`), then replace placeholders in `.env.development` / `.env.production` with real values from the Supabase dashboard.
+- [x] **Optional:** Change `backend/lib/supabase.js` so the app can start without Supabase (e.g. skip `createClient` when URL/key are placeholder or missing, and export `null` or a no-op client). Otherwise, keep the current “throw if missing” behavior and document that users must create a Supabase project and paste real keys before using auth/reports.
+- [x] **When connecting:** Create a Supabase project, run the project’s SQL migrations (e.g. `backend/schema.sql`, `migration-*.sql`), then replace placeholders in `.env.development` / `.env.production` with real values from the Supabase dashboard.
 
 ---
 
 ## 3. Stripe — disconnected by default
 
-- [ ] **Backend env:** In `backend/.env.development`, set Stripe to placeholders or leave as-is:
+- [x] **Backend env:** In `backend/.env.development`, set Stripe to placeholders or leave as-is:
   - `STRIPE_SECRET_KEY=sk_test_...` (or leave empty if your code allows).
   - `STRIPE_WEBHOOK_SECRET=whsec_...` (optional until you use webhooks).
-- [ ] **Frontend env:** Copy `frontend/env.example` to `frontend/.env.development` (and `.env.production` for production builds).
+- [x] **Frontend env:** Copy `frontend/env.example` to `frontend/.env.development` (and `.env.production` for production builds).
   - Set or leave placeholder: `NEXT_PUBLIC_STRIPE_PRODUCT_ID`, `NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID`, `NEXT_PUBLIC_STRIPE_ANNUAL_PRICE_ID`.
-- [ ] Ensure no **live** Stripe API calls run until you explicitly connect a live key (use test keys in dev; document that production requires replacing with live keys and live price IDs).
+- [x] Ensure no **live** Stripe API calls run until you explicitly connect a live key (use test keys in dev; document that production requires replacing with live keys and live price IDs).
 
 ---
 
 ## 4. Resend — disconnected by default
 
-- [ ] **Backend env:** In `backend/.env.development`, leave `RESEND_API_KEY` unset or empty.
-- [ ] The app already handles “Resend not configured” (see `backend/lib/email.js`). No code change required; emails simply won’t send until you set a real `RESEND_API_KEY` (and optionally `RESEND_FROM_EMAIL`, `ADMIN_EMAIL`) in `.env.production` or `.env.development`.
+- [x] **Backend env:** In `backend/.env.development`, leave `RESEND_API_KEY` unset or empty.
+- [x] The app already handles “Resend not configured” (see `backend/lib/email.js`). No code change required; emails simply won’t send until you set a real `RESEND_API_KEY` (and optionally `RESEND_FROM_EMAIL`, `ADMIN_EMAIL`) in `.env.production` or `.env.development`.
 
 ---
 
 ## 5. Railway (and frontend host) — not connected
 
-- [ ] **Backend:** Do **not** add a live Railway (or other) deploy config to the boilerplate repo; treat deployment as a user step.
-- [ ] **Frontend env:** In `frontend/.env.development`, keep `NEXT_PUBLIC_API_URL=http://localhost:3002`. For production, document that the user must set `NEXT_PUBLIC_API_URL` to their deployed backend (e.g. `https://your-app.up.railway.app`) in `frontend/.env.production` or in the Vercel/host env.
-- [ ] In README or a short “Deploy” section, state that the boilerplate does **not** include a connected Railway (or other) project; users deploy the backend and frontend themselves and wire env vars accordingly.
+- [x] **Backend:** Do **not** add a live Railway (or other) deploy config to the boilerplate repo; treat deployment as a user step.
+- [x] **Frontend env:** In `frontend/.env.development`, keep `NEXT_PUBLIC_API_URL=http://localhost:3002`. For production, document that the user must set `NEXT_PUBLIC_API_URL` to their deployed backend (e.g. `https://your-app.up.railway.app`) in `frontend/.env.production` or in the Vercel/host env.
+- [x] In README or a short “Deploy” section, state that the boilerplate does **not** include a connected Railway (or other) project; users deploy the backend and frontend themselves and wire env vars accordingly.
 
 ---
 
 ## 6. Other env (Google Maps, Geo, etc.)
 
-- [ ] **Frontend:** `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` — leave as placeholder or empty if the app allows (e.g. address autocomplete may be disabled until set).
-- [ ] **Backend:** `GEOSERVICE_API_KEY` and any other API keys — document that they are optional or required for specific features; leave placeholders in `env.example` so the app can start without them if the code permits.
+- [x] **Frontend:** `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` — leave as placeholder or empty if the app allows (e.g. address autocomplete may be disabled until set).
+- [x] **Backend:** `GEOSERVICE_API_KEY` and any other API keys — document that they are optional or required for specific features; leave placeholders in `env.example` so the app can start without them if the code permits.
 
 ---
 
 ## 7. Documentation
 
-- [ ] README (or `README-CLERMONT-CONTEXT.md`) states that Clermont is a **SaaS boilerplate** and that Supabase, Stripe, Resend, and Railway are **disconnected** by default.
-- [ ] Point users to:
+- [x] README (or `README-CLERMONT-CONTEXT.md`) states that this is a **SaaS boilerplate** and that Supabase, Stripe, Resend, and Railway are **disconnected** by default.
+- [x] Point users to:
   - `backend/env.example` and `frontend/env.example` for required/optional variables.
   - This checklist for how to connect each service when ready.
 
