@@ -76,6 +76,7 @@ Builds the frontend for production.
 
 ## More documentation
 
+- **README-START-NEXT-PROJECT.md** – **Start here after cloning:** what to enable (frontend, backend, database, email, billing), dev mode commands, and a quick checklist for your next project.
 - **LOCAL-SETUP.md** – Step-by-step local setup (env, install, run, verify).
 - **README-DEV-PROD-SETUP.md** – How dev vs production env and scripts work.
 - **README-Repo-and-Commits.md** – Repo layout and commit workflow.

@@ -3,7 +3,7 @@ import express from "express";
 import Stripe from "stripe";
 import { supabase, supabaseAdmin } from "../lib/supabase.js";
 import { getUserFromToken } from "../lib/auth-utils.js";
-import { sendPasswordResetEmail, sendAdminNewSignupNotification } from "../lib/email.js";
+import { sendPasswordResetEmail } from "../lib/email.js";
 
 const router = express.Router();
 
@@ -212,17 +212,6 @@ router.post("/signup", async (req, res) => {
 				console.error("Error marking join code as used:", updateCodeError);
 				// Don't fail the signup, just log the error
 			}
-		}
-
-		// Notify admin of new signup (production only; does not block signup)
-		const notifyResult = await sendAdminNewSignupNotification(
-			user.Email,
-			user.Name,
-			organization.Name,
-			user.CreatedAt
-		);
-		if (!notifyResult.success) {
-			console.error("Admin new-signup notification failed:", notifyResult.error);
 		}
 
 		res.status(201).json({
@@ -581,10 +570,10 @@ router.post("/joincode/generate", async (req, res) => {
 			}
 		}
 
-		// Generate a unique code (format: LINDERO-XXXXXX)
+		// Generate a unique join code (format: JOIN-XXXXXX)
 		const generateCode = () => {
 			const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Excluding confusing chars
-			let code = "LINDERO-";
+			let code = "JOIN-";
 			for (let i = 0; i < 6; i++) {
 				code += chars.charAt(Math.floor(Math.random() * chars.length));
 			}
